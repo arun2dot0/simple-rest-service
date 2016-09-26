@@ -1,7 +1,12 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Optional;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
+@JsonInclude(Include.NON_NULL)
 public class Person implements Serializable{
 	
 	/**
@@ -10,6 +15,8 @@ public class Person implements Serializable{
 	private static final long serialVersionUID = 2706152402307443085L;
 	String firstName,lastName,phone,email;
 
+	Address address;
+	
 	public Person()
 	{}
 	
@@ -19,6 +26,17 @@ public class Person implements Serializable{
 		this.lastName = lastName;
 		this.phone = phone;
 		this.email = email;
+		
+	}
+	
+	
+	public Person(String firstName, String lastName, String phone, String email,Address address) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.email = email;
+		this.address = address;
 	}
 
 	public String getFirstName() {
@@ -53,11 +71,21 @@ public class Person implements Serializable{
 		this.email = email;
 	}
 
+
+	public Address getAddress() {
+			return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
 		return "Person [firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone + ", email=" + email
-				+ "]";
+				+ ", address=" + address + "]";
 	}
+
 	
 
 }
